@@ -401,7 +401,7 @@ addLayer("f", {
       },
       32: {
         title: "Bribes",
-        description:()=> "Ahem... Dust managers only take half of the resources when bought",
+        description:()=> "Ahem... Dust Managers only take half of the resources when bought",
         unlocked:() => player.f.points.gte(30)||hasUpgrade('f',32),
         canAfford(){player[this.layer].points.gte(30)},
         cost: new Decimal(30),
@@ -510,7 +510,7 @@ addLayer("f", {
         },
         display() { 
           let data = tmp[this.layer].buyables[this.id]
-          return "\n<h2>Amount</h2>: <b>"+getBuyableAmount('f', 11)+"</b>\n\
+          return "\n<h2>Amount</h2>: <b>"+getBuyableAmount('f', 12)+"</b>\n\
           <h2>Cost</h2>: " + format(data.cost) + " Star Ingots\n\n\
           Makes the Furnace hotter\n\
           Faster forging -" + format(data.effect)+"s"
