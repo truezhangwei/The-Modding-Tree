@@ -36,6 +36,7 @@ addLayer("s", {
     effectDescription() { // Optional text to describe the effects
         return hasUpgrade('s', 14)?('which divide <span style="color:darkslategrey">Dust Bunny</span> cost by x'+format(upgradeEffect('s',14))):''
     },
+    passiveGeneration(){if(hasUpgrade('f',21)) return player.f.passive.plus(buyableEffect('f',11).div(100))},
      buyables: {
       11: {
         title: "Dust Bunny", 
@@ -223,8 +224,6 @@ addLayer("s", {
       if(hasMilestone('f',0)) buyBuyable('s',11);
       if(hasMilestone('f',1)) buyBuyable('s',12);
       if(hasMilestone('f',2)) buyBuyable('s',13);
-      let rg = getResetGain('s');
-      if(hasUpgrade('f',21)&&rg.gt(0)) player.s.points = player.s.points.plus(rg.times(d).times(player.f.passive.plus(buyableEffect('f',11).div(100))))
     },
     hotkeys: [
       {key: "s", description: "S: Reset for Star Shards", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
