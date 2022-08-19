@@ -2,25 +2,24 @@ let modInfo = {
 	name: "The ??? Tree",
 	id: "mymod",
 	author: "nobody",
-	pointsName: "points",
+	pointsName: "Star Particles",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (10), // Used for hard resets and new players
+	initialStartPoints: new Decimal (0), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
-	name: "Literally nothing",
+	num: "0.1",
+	name: "Step One",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.0</h3><br>
-		- Added things.<br>
-		- Added stuff.`
+	<h3>v0.1</h3><br>
+		- First pass, 2 layers and a sublayer.`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -28,21 +27,26 @@ let winText = `Congratulations! You have reached the end and beaten this game, b
 // (The ones here are examples, all official functions are already taken care of)
 var doNotCallTheseFunctionsEveryTick = ["blowUpEverything"]
 
+
 function getStartPoints(){
-    return new Decimal(modInfo.initialStartPoints)
+    return new Decimal(0)
 }
 
 // Determines if it should show points/sec
 function canGenPoints(){
-	return true
+	return getBuyableAmount('s', 11)>0
 }
 
 // Calculate points/sec!
 function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
-
-	let gain = new Decimal(1)
+	let gain = new Decimal(hasUpgrade('s', 11)?1:.1).times(buyableEffect('s', 11)).times(upgradeEffect('s',22)).times(upgradeEffect('s',23));
+  if(player['f'].best.gte(1)) gain = gain.times(player['f'].best.pow(1.02).times(1.15).plus(player['f'].best.sqrt().times(.15)));
+  if(hasUpgrade('f',13)&&!hasUpgrade('f',23)) gain = gain.div(3);
+  if(hasUpgrade('f',15)) gain = gain.times(upgradeEffect('f',15));
+  if(hasUpgrade('f',24)) gain = gain.times(upgradeEffect('f',24))
+  if(hasUpgrade('f',25)) gain = gain.times(upgradeEffect('f',25))
 	return gain
 }
 
