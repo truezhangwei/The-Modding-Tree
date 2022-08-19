@@ -231,6 +231,7 @@ addLayer("s", {
     ],
     tabFormat: [
         "main-display",
+        ["raw-html", function() {if(player.f.passive.gt(0)) return '(<span style="color:orange">'+format(getResetGain('s').times(player.f.passive.plus(buyableEffect('f',11).div(100))))+'/sec</span>)'}], "blank",
         "prestige-button",
         "blank",
         "buyables",
