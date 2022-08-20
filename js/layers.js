@@ -79,7 +79,7 @@ addLayer("s", {
         display() { 
           let data = tmp[this.layer].buyables[this.id]
           return "\n<h2>Amount</h2>: <b>" + getBuyableAmount('s', 12) + (getBuyableAmount('s', 13).gte(1)?('+'+getBuyableAmount('s', 13).times(hasUpgrade('f',12)?2:1)):'')+"</b>\n\
-          <h2>Cost</h2>: " + format(data.cost) + " Star Shards\n\n\
+          <h2>Cost</h2>: " + format(data.cost) + " Star Particles\n\n\
           More efficient way to collect stardust\n\
           Makes Dust Bunnies better by x" + format(data.effect)
         },
